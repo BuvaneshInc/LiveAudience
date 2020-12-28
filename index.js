@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening at ${PORT}`)
+  console.log(`Example app listening at ${PORT}`);
 });
 
 io.sockets.on("connection", function (socket) {
@@ -49,7 +49,6 @@ io.sockets.on("connection", function (socket) {
     }
   });
 
-
   socket.on('disconnect', function () {
     try {
       socket.to('LiveAudienceUsers').emit('UserDisconnected', socket.id);
@@ -58,11 +57,10 @@ io.sockets.on("connection", function (socket) {
     }
   });
 
-});s
-
-http.listen(port, function () {
-  console.log('listening on *:' + port);
 });
+/* http.listen(PORT, function () {
+  console.log('listening on *:' + PORT);
+}); */
 
 function consolelog(message) {
   console.log(getDateTime() + ": " + message);
