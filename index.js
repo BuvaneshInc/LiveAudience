@@ -13,6 +13,16 @@ app.get('/', function (req, res) {
   res.end('Socket.IO Connected Successfully');
 });
 
+app.get('/welcome', function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.writeHead(200, {
+    'Content-Type': 'text/plain'
+  });
+  res.end('Socket.IO Connected Successfully');
+});
+
 io.sockets.on("connection", function (socket) {
 
   socket.on("livedashboard", function (user) {
