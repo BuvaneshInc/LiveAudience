@@ -1,7 +1,7 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var port = process.env.PORT || 5000;
+var PORT = process.env.PORT || 5000;
 
 app.get('/', function (req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,17 +11,8 @@ app.get('/', function (req, res) {
     'Content-Type': 'text/plain'
   });
   res.end('Socket.IO Connected Successfully');
-});
-
-app.get('/welcome', function (req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept-Type');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.writeHead(200, {
-    'Content-Type': 'text/plain'
-  });
-  res.end('Socket.IO Connected Successfully1');
-});
+})
+.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 io.sockets.on("connection", function (socket) {
 
@@ -44,6 +35,7 @@ io.sockets.on("connection", function (socket) {
       consolelog(e);
     }
   });
+
   socket.on("NewMobileUser", function (user) {
     try {
       var obj = JSON.parse(user);
@@ -63,8 +55,7 @@ io.sockets.on("connection", function (socket) {
     }
   });
 
-});
-
+});s
 
 http.listen(port, function () {
   console.log('listening on *:' + port);
