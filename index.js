@@ -11,8 +11,11 @@ app.get('/', function (req, res) {
     'Content-Type': 'text/plain'
   });
   res.end('Socket.IO Connected Successfully');
-})
-.listen(PORT, () => console.log(`Listening on ${PORT}`));
+});
+
+app.listen(PORT, () => {
+  console.log(`Example app listening at ${PORT}`)
+});
 
 io.sockets.on("connection", function (socket) {
 
